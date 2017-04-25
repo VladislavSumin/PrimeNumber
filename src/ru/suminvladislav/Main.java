@@ -13,7 +13,7 @@ public class Main {
             //long n = 987654321L;
             //long n = Long.valueOf(args[0]);
             System.out.println("N: " + n);
-            new R6(n);
+            new PrimeNumber(n);
             time = System.currentTimeMillis() - time;
             System.out.println("Time: " + time + " ms");
             times.add(time);
