@@ -1,16 +1,25 @@
 package ru.suminvladislav;
 
+import java.util.Vector;
+
 public class Main {
+    private static long time;
 
     public static void main(String[] args) {
-        for (int i = 0; i < 1; i++) {
-            long time = System.currentTimeMillis();
-            //long n = (long) Integer.MAX_VALUE * (60+ 1) - 1;
+        Vector<Long> times = new Vector<>();
+        for (int i = 0; i < 100; i++) {
+            time = System.currentTimeMillis();
+            long n = (long) Integer.MAX_VALUE - 1;
             //long n = 987654321L;
-            long n = Long.valueOf(args[0]);
+            //long n = Long.valueOf(args[0]);
             System.out.println("N: " + n);
             new R6(n);
-            System.out.println("Time: " + (System.currentTimeMillis() - time) + " ms\n");
+            time = System.currentTimeMillis() - time;
+            System.out.println("Time: " + time + " ms");
+            times.add(time);
+            time = 0;
+            times.forEach(aLong -> time += aLong);
+            System.out.println("Avg time: " + (time / ((double) times.size())) + " ms\n");
         }
     }
 }

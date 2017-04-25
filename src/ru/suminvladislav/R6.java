@@ -27,31 +27,27 @@ class R6 {
         long index;
         //System.out.println(1);
         //System.out.println(2);
-        while (lastIndex < max) {
-            if (((vector[(int) (lastIndex / sizeJ)] >> ((int) (lastIndex % sizeJ))) & 1) == 0) {
-                step = lastIndex * 2 - 1;
-                //index = lastIndex + step;
-                index = lastIndex + (lastIndex - 1) * step;//скорость x2 но это не точно.
-                if (index > max) {
-                    //System.out.println("!");
-                    while (lastIndex < max) {
-                        while (((vector[(int) (lastIndex / sizeJ)] >> (int) (lastIndex % sizeJ)) & 1) == 1)
-                            lastIndex++;
-                        if (lastIndex < max) {
-                            lastIndex++;// И так сойдет =)
-                            currentNumber++;
-                        }
+        for (; lastIndex < max; lastIndex++) {
+            if (((vector[(int) (lastIndex / sizeJ)] >> ((int) (lastIndex % sizeJ))) & 1) == 1) continue;
+            step = lastIndex * 2 - 1;
+            index = lastIndex + (lastIndex - 1) * step;// Вычеркивание начиная с n^2
+            if (index > max) {
+                while (lastIndex < max) {
+                    while (((vector[(int) (lastIndex / sizeJ)] >> (int) (lastIndex % sizeJ)) & 1) == 1)
+                        lastIndex++;
+                    if (lastIndex < max) {
+                        currentNumber++;
                     }
-                    return;
+                    lastIndex++;
                 }
-                while (index < max) {
-                    vector[(int) (index / sizeJ)] |= (1L << (int) (index % sizeJ));
-                    index += step;
-                }
-                //System.out.println(lastIndex * 2 - 1);
-                currentNumber++;
+                return;
             }
-            lastIndex++;
+            while (index < max) {
+                vector[(int) (index / sizeJ)] |= (1L << (int) (index % sizeJ));
+                index += step;
+            }
+            //System.out.println(lastIndex * 2 - 1);
+            currentNumber++;
         }
     }
 }
