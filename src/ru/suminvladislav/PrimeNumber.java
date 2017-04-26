@@ -40,7 +40,6 @@ class PrimeNumber {
 
     /**
      * Внимание: вывод всех чисел в консоль занимает в 35 раз больше времени чем их поиск (при max = 2^31 - 2).
-     *
      */
     private void process() {
         long lastIndex = 2;
